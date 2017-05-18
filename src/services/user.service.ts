@@ -26,7 +26,7 @@ export class UserService {
     }
 
     getUsers() {
-        return this._http.get('https://api.github.com/users')
+        return this._http.get('http://api.github.com/users')
         .map(res => <Profile[]>res.json());
     }
 

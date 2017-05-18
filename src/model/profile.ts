@@ -1,4 +1,5 @@
 export class Profile {
+    name: string;
     login: string;
     avatar_url: string;
     bio: string;

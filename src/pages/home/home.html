@@ -12,4 +12,10 @@
   <p>
     This app utilizes the <a href="https://developer.github.com/v3/users/">Github API</a>.
   </p>
+
+  <div *ngIf="users">
+    <ul *ngFor="let user of users">
+      <li><img src={{user.avatar_url}} width="50px" height="50px">{{user.login}}</li>
+    </ul>
+  </div>
 </ion-content>

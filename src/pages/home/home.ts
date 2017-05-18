@@ -15,6 +15,7 @@ export class HomePage {
   
   constructor(public navCtrl: NavController, private userService: UserService) {
     this.userService.getUsers().subscribe(users => {
+      this.users = users;
       console.log(users);
     });
   }
