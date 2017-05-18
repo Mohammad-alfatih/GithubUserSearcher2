@@ -7,13 +7,24 @@
 </ion-header>
 
 <ion-content padding>
+
   <form (ngSubmit)="setUser(formInput.value)">
-      <ion-input type="text" placeholder="Enter Github username" name="username"[(ngModel)]="username" #formInput required></ion-input>
-      <ion-buttons>
-          <button ion-button icon-only block>
-            <ion-icon name="search"></ion-icon>
-          </button>
-      </ion-buttons>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <ion-input type="text" placeholder="Enter Github username" name="username"[(ngModel)]="username" #formInput required></ion-input>
+          </ion-col>
+          <ion-col col-2>
+            <ion-buttons>
+              <button ion-button icon-only block>
+                <ion-icon name="search"></ion-icon>
+              </button>
+          </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      
     </form>
 
   <img src={{user.avatar_url}}>
