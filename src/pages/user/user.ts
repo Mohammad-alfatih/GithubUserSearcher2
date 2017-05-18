@@ -19,7 +19,10 @@ export class UserPage {
                 this.user = false;
   }
 
-  setUser(username: string) {
-    this.user = this.userService.setUser(username);
+  setUser() {
+    this.userService.setUser(this.username);
+    this.userService.getUser().subscribe(user => {
+      this.user = user;
+    });
   }
 }

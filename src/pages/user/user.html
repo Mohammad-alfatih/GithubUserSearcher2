@@ -6,8 +6,21 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  {{user.avatar}}
+  <form (ngSubmit)="setUser(formInput.value)">
+      <ion-input type="text" placeholder="Enter Github username" name="username"[(ngModel)]="username" #formInput required></ion-input>
+      <ion-buttons>
+          <button ion-button icon-only block>
+            <ion-icon name="search"></ion-icon>
+          </button>
+      </ion-buttons>
+    </form>
+
+  <img src={{user.avatar_url}}>
   <h3>{{user.name}}</h3>
+  <h4>Profile Info:</h4>
+  <p *ngIf="user.bio"><strong>Bio: </strong>{{user.bio}}</p>
+  <p *ngIf="user.company"><strong>Company: </strong>{{user.company}}</p>
+  <p *ngIf="user.location"><strong>Location: </strong>{{user.location}}</p>
+  <p *ngIf="user.blog"><strong>Website/Blog: </strong>{{user.blog}}</p>
 </ion-content>
