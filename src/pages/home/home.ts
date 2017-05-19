@@ -23,12 +23,12 @@ export class HomePage {
   viewProfile(username: string) {
     this.navCtrl.push(UserPage, {name: username});
   }
-}
 
-/*
-  - This page should show a list of 20 Github users.
-  - When a user is clicked:
-    - Set user field in UserPage equal to clicked user.
-    - Open the UserPage to view
-    - User's name should be included in the search bar.
-*/
+  appendLastUser() {
+    let lastUser: any = this.users[this.users.length - 1];
+    this.userService.appendLastUser(lastUser.id);
+    this.userService.getUserGroup().subscribe(users => {
+      this.users = users;
+    });
+  }
+}

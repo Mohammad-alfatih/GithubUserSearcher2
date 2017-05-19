@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { UserService } from '../../services/user.service';
@@ -19,17 +19,13 @@ export class UserPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private userService: UserService ,
-              private inAppBrowser: InAppBrowser /*,
-              private platform: Platform */) { }
+              private inAppBrowser: InAppBrowser) { }
 
   hasUser() {
     if(this.user != undefined) return true;
   }
 
   setUser(username: string) {
-    //this.userService.setUser(username);
-    //this.user = this.userService.getUser();
-
     this.userService.findByUserName(username).then((user:Profile)=>{
       this.user = user;
     })
@@ -41,13 +37,7 @@ export class UserPage {
   }
 
   openInAppBrowser() {
-    const browser = this.inAppBrowser.create(this.user.blog);
+    this.inAppBrowser.create(this.user.blog);
     console.log("Anything");
   }
-
-  // openUrl() {
-  //   this.platform.ready().then(() => {
-  //     let browser = new InAppBrowser(this.user.blog, '_blank');
-  //   });
-  // }
 }

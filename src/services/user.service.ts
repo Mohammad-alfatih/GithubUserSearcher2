@@ -11,6 +11,7 @@ export class UserService {
     private client_secret = '52c6a54d51a085c91c69a5328c88c9e7463e65b9';
     private username: string;
     private user: Profile;
+    private lastUser = 0;
 
     constructor(private http: Http) {
         
@@ -22,18 +23,10 @@ export class UserService {
         .map(res => <Profile>res.json()).subscribe(user => { this.user = user; console.log(this.user); return this.user});
     }
 
-    // getUser() {
-    //     return this.user;
-    // }
-
     getUserGroup() {
-        return this.http.get('http://api.github.com/users')
+        return this.http.get('http://api.github.com/users?client_id=' + this.client_id + '&client_secret=' + this.client_secret + '&since=' + this.lastUser + '&per_page=10')
         .map(res => <Profile[]>res.json());
     }
-
-    // nextPage() {
-    //     return this._http.get('https')
-    // }
 
     findByUserName(username:string){
         this.username = username;
@@ -45,5 +38,9 @@ export class UserService {
                         resolve(res)
                 })
         })
+    }
+
+    appendLastUser(id: number) {
+        this.lastUser = id;
     }
 }
