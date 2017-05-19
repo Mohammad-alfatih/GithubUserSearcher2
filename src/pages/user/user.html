@@ -1,18 +1,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>User Profile for {{user.name}}</ion-title>
+    <ion-title *ngIf="hasUser()">User Profile for {{user.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-  <form (ngSubmit)="setUser(formInput.value)">
+  <form (ngSubmit)="setUserProfile(formInput.value)">
       <ion-grid>
         <ion-row>
           <ion-col col-10>
-            <ion-input type="text" placeholder="Enter Github username" name="username"[(ngModel)]="username" #formInput required></ion-input>
+            <ion-input type="text" placeholder="Enter Github username" name="username" [(ngModel)]="username" #formInput required></ion-input>
           </ion-col>
           <ion-col col-2>
             <ion-buttons>
@@ -23,15 +23,15 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-
-      
-    </form>
-
-  <img src={{user.avatar_url}}>
-  <h3>{{user.name}}</h3>
-  <h4>Profile Info:</h4>
-  <p *ngIf="user.bio"><strong>Bio: </strong>{{user.bio}}</p>
-  <p *ngIf="user.company"><strong>Company: </strong>{{user.company}}</p>
-  <p *ngIf="user.location"><strong>Location: </strong>{{user.location}}</p>
-  <p *ngIf="user.blog"><strong>Website/Blog: </strong>{{user.blog}}</p>
+  </form>
+  
+  <div *ngIf="hasUser()">
+    <img src={{user.avatar_url}}>
+    <h3>{{user.name}}</h3>
+    <h4>Profile Info:</h4>
+    <p *ngIf="user.bio"><strong>Bio: </strong>{{user.bio}}</p>
+    <p *ngIf="user.company"><strong>Company: </strong>{{user.company}}</p>
+    <p *ngIf="user.location"><strong>Location: </strong>{{user.location}}</p>
+    <p *ngIf="user.blog"><strong>Website/Blog: </strong>{{user.blog}}</p>
+  </div>
 </ion-content>

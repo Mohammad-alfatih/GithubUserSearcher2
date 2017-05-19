@@ -19,6 +19,10 @@ export class HomePage {
       console.log(users);
     });
   }
+
+  viewProfile(user: Profile) {
+    
+  }
 }
 
 

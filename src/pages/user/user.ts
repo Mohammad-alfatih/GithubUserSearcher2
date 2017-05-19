@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { UserService } from '../../services/user.service';
 
+import { Profile } from '../../model/profile';
+
 @IonicPage()
 @Component({
   selector: 'page-user',
@@ -11,17 +13,19 @@ import { UserService } from '../../services/user.service';
 })
 export class UserPage {
   username: string;
-  user: any;
+  user: Profile;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private userService: UserService) {
-                this.user = false;
   }
 
-  setUser() {
-    this.userService.setUser(this.username);
-    this.userService.getUser().subscribe(user => {
+  hasUser() {
+    if(this.user != undefined) return true;
+  }
+
+  setUserProfile(username: string) {
+    this.userService.getUser(username).subscribe(user => {
       this.user = user;
     });
   }
