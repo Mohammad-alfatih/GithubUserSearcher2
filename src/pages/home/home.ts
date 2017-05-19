@@ -13,18 +13,17 @@ import { UserPage } from '../user/user';
 export class HomePage {
   users: Profile[];
   
-  constructor(public navCtrl: NavController, private userService: UserService) {
+  constructor(public navCtrl: NavController,
+              private userService: UserService) {
     this.userService.getUserGroup().subscribe(users => {
       this.users = users;
-      console.log(users);
     });
   }
 
-  // viewProfile(user: Profile) {
-  //   this.userService.
-  // }
+  viewProfile(username: string) {
+    this.navCtrl.push(UserPage, {name: username});
+  }
 }
-
 
 /*
   - This page should show a list of 20 Github users.

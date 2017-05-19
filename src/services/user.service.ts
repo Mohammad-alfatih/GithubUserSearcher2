@@ -12,13 +12,13 @@ export class UserService {
     private username: string;
     private user: Profile;
 
-    constructor(private _http: Http) {
+    constructor(private http: Http) {
         
     }
 
     setUser(username: string) {
         this.username = username;
-        return this._http.get('http://api.github.com/users/' + this.username + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret)
+        return this.http.get('http://api.github.com/users/' + this.username + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret)
         .map(res => <Profile>res.json()).subscribe(user => { this.user = user; });
     }
 
@@ -27,7 +27,7 @@ export class UserService {
     }
 
     getUserGroup() {
-        return this._http.get('http://api.github.com/users')
+        return this.http.get('http://api.github.com/users')
         .map(res => <Profile[]>res.json());
     }
 

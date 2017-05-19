@@ -5,17 +5,20 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Github User Searcher</h2>
-  <p>
-    Use this app to search for Github users by username.
-  </p>
-  <p>
-    This app utilizes the <a href="https://developer.github.com/v3/users/">Github API</a>.
-  </p>
+  <h1 text-center>Github User Searcher</h1>
+  <p text-center>
+    Use this app to search for Github users by login name, utilizing the <a href="https://developer.github.com/v3/users/">Github API</a>.
+  </p>  
 
   <div *ngIf="users">
-    <ul *ngFor="let user of users">
-      <li (click)="viewProfile(user)"><img src={{user.avatar_url}} width="50px" height="50px">{{user.login}}</li>
-    </ul>
+    <ion-list *ngFor="let user of users">
+      <ion-item (click)="viewProfile(user.login)">
+        <ion-thumbnail item-left>
+          <img src={{user.avatar_url}}>
+        </ion-thumbnail>
+         <strong>{{user.login}}</strong>
+         <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

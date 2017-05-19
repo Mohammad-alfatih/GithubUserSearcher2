@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { UserService } from '../../services/user.service';
@@ -17,8 +17,7 @@ export class UserPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private userService: UserService) {
-  }
+              private userService: UserService) { }
 
   hasUser() {
     if(this.user != undefined) return true;
@@ -27,5 +26,10 @@ export class UserPage {
   setUser(username: string) {
     this.userService.setUser(username);
     this.user = this.userService.getUser();
+  }
+
+  ionViewWillEnter() {
+    this.username = this.navParams.get('name') as string;
+    this.setUser(this.username);
   }
 }

@@ -8,6 +8,6 @@ export class Profile {
     blog: string;
     public_repos: number;
     public_gists: number;
-    follwers: number;
+    followers: number;
     following: number;
 }
