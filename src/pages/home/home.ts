@@ -14,15 +14,15 @@ export class HomePage {
   users: Profile[];
   
   constructor(public navCtrl: NavController, private userService: UserService) {
-    this.userService.getUsers().subscribe(users => {
+    this.userService.getUserGroup().subscribe(users => {
       this.users = users;
       console.log(users);
     });
   }
 
-  viewProfile(user: Profile) {
-    
-  }
+  // viewProfile(user: Profile) {
+  //   this.userService.
+  // }
 }
 
 

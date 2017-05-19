@@ -24,9 +24,8 @@ export class UserPage {
     if(this.user != undefined) return true;
   }
 
-  setUserProfile(username: string) {
-    this.userService.getUser(username).subscribe(user => {
-      this.user = user;
-    });
+  setUser(username: string) {
+    this.userService.setUser(username);
+    this.user = this.userService.getUser();
   }
 }

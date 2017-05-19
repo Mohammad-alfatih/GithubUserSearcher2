@@ -17,16 +17,16 @@ export class UserService {
     }
 
     setUser(username: string) {
-        return this.username = username;
-    }
-
-    getUser(username: string) {
         this.username = username;
         return this._http.get('http://api.github.com/users/' + this.username + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret)
-        .map(res => <Profile>res.json());
+        .map(res => <Profile>res.json()).subscribe(user => { this.user = user; });
     }
 
-    getUsers() {
+    getUser() {
+        return this.user;
+    }
+
+    getUserGroup() {
         return this._http.get('http://api.github.com/users')
         .map(res => <Profile[]>res.json());
     }
