@@ -15,12 +15,11 @@ import { Profile } from '../../model/profile';
 export class UserPage {
   username: string;
   user: Profile;
-  //browser = this.inAppBrowser.create(this.user.blog);
-
+  
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private userService: UserService /*,
-              private inAppBrowser: InAppBrowser,
+              private userService: UserService ,
+              private inAppBrowser: InAppBrowser /*,
               private platform: Platform */) { }
 
   hasUser() {
@@ -28,13 +27,22 @@ export class UserPage {
   }
 
   setUser(username: string) {
-    this.userService.setUser(username);
-    this.user = this.userService.getUser();
+    //this.userService.setUser(username);
+    //this.user = this.userService.getUser();
+
+    this.userService.findByUserName(username).then((user:Profile)=>{
+      this.user = user;
+    })
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     this.username = this.navParams.get('name') as string;
     this.setUser(this.username);
+  }
+
+  openInAppBrowser() {
+    const browser = this.inAppBrowser.create(this.user.blog);
+    console.log("Anything");
   }
 
   // openUrl() {

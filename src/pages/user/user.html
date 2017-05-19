@@ -46,7 +46,7 @@
       <p *ngIf="user.bio"><strong>Bio: </strong>{{user.bio}}</p>
       <p *ngIf="user.company"><strong>Company: </strong>{{user.company}}</p>
       <p *ngIf="user.location"><strong>Location: </strong>{{user.location}}</p>
-      <p *ngIf="user.blog"><strong>Website/Blog: </strong>{{user.blog}}</p>
+      <p *ngIf="user.blog" (click)="openInAppBrowser()"><strong>Website/Blog: </strong>{{user.blog}}</p>
     </div>
   </div>
 </ion-content>

@@ -19,12 +19,12 @@ export class UserService {
     setUser(username: string) {
         this.username = username;
         return this.http.get('http://api.github.com/users/' + this.username + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret)
-        .map(res => <Profile>res.json()).subscribe(user => { this.user = user; });
+        .map(res => <Profile>res.json()).subscribe(user => { this.user = user; console.log(this.user); return this.user});
     }
 
-    getUser() {
-        return this.user;
-    }
+    // getUser() {
+    //     return this.user;
+    // }
 
     getUserGroup() {
         return this.http.get('http://api.github.com/users')
@@ -34,4 +34,16 @@ export class UserService {
     // nextPage() {
     //     return this._http.get('https')
     // }
+
+    findByUserName(username:string){
+        this.username = username;
+        return new Promise((resolve, reject) => {
+            let url = 'http://api.github.com/users/' + this.username + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret;
+            this.http.get(url)
+                .map(res => <Profile>res.json())
+                .subscribe(res => {
+                        resolve(res)
+                })
+        })
+    }
 }
