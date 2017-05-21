@@ -32,12 +32,10 @@ export class UserService {
         this.username = username;
         return new Promise((resolve, reject) => {
             let url = 'http://api.github.com/users/' + this.username + '?client_id=' + this.client_id + '&client_secret=' + this.client_secret;
-            this.http.get(url)
-                .map(res => <Profile>res.json())
-                .subscribe(res => {
+            this.http.get(url).map(res => <Profile>res.json()).subscribe(res => {
                         resolve(res)
-                })
-        })
+                });
+        });
     }
 
     appendLastUser(id: number) {
